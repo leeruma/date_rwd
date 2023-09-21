@@ -1,23 +1,19 @@
-const [hr, m, s] = document.querySelectorAll('h1 span');
-
-const now = new Date();
-const hours = now.getHours();
-const min = now.getMinutes();
-const sec = now.getSeconds();
-
-// hours값을 setHours가 조건에 12를 뺀 값으로 반환
-// 반환된 결과값을 다시 바로 setNumbers에 집어넣어서 0을 붙이도록 처리
-hr.innerText = setNumbers(setHours(hours));
-m.innerText = setNumbers(min);
-s.innerText = setNumbers(sec);
-
 /*
-// 다음과 같이 코드를 줄일 수 있음
-const values = [setHours(hours), min, sec];
-spans.forEach((el, idx) => {
-	el.innerText = setNumbers(values[idx]);
-});
+특정 시간을 주기로 코드를 반복할 때
+setInterval(반복실행할 함수, 반복시간간격시간(ms))
 */
+const [hr, m, s] = document.querySelectorAll('h1 span');
+setInterval(setTime, 1000);
+
+function setTime() {
+	const now = new Date();
+	const hours = now.getHours();
+	const min = now.getMinutes();
+	const sec = now.getSeconds();
+	hr.innerText = setNumbers(setHours(hours));
+	m.innerText = setNumbers(min);
+	s.innerText = setNumbers(sec);
+}
 
 function setNumbers(num) {
 	num < 10 && (num = '0' + num);
